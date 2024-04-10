@@ -1,0 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:course_app/src/auth/data/datasources/auth_remote_data_source.dart';
+import 'package:course_app/src/auth/data/repo/auth_repo_impl.dart';
+import 'package:course_app/src/auth/domain/repo/auth_repo.dart';
+import 'package:course_app/src/auth/presentition/bloc/auth_bloc.dart';
+import 'package:course_app/src/auth/usecases/forget_password.dart';
+import 'package:course_app/src/auth/usecases/get_user_data.dart';
+import 'package:course_app/src/auth/usecases/sign_in.dart';
+import 'package:course_app/src/auth/usecases/sign_up.dart';
+import 'package:course_app/src/auth/usecases/update_user.dart';
+import 'package:course_app/src/on_boarding/data/repo/on_boarding_repo_impl.dart';
+import 'package:course_app/src/on_boarding/datasources/on_boarding_local_data_source.dart';
+import 'package:course_app/src/on_boarding/domain/repo/onboarding_repo.dart';
+import 'package:course_app/src/on_boarding/presentation/cubit/onboarding_cubit.dart';
+import 'package:course_app/src/on_boarding/usecases/cache_first_time.dart';
+import 'package:course_app/src/on_boarding/usecases/check_if_user_is_first_teme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:get_it/get_it.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+part 'injection_container.dart';
