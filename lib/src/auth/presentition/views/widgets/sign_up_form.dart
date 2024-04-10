@@ -7,24 +7,29 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 
-class SignInForm extends StatefulWidget {
-  const SignInForm({
+class SignUpForm extends StatefulWidget {
+  const SignUpForm({
     required this.emailController,
     required this.passwordController,
+    required this.fullNameController,
+    required this.confermPasswordController,
     required this.formKey,
     super.key,
   });
 
   final TextEditingController emailController;
   final TextEditingController passwordController;
+  final TextEditingController confermPasswordController;
+  final TextEditingController fullNameController;
   final GlobalKey<FormState> formKey;
 
   @override
-  State<SignInForm> createState() => _SignInFormState();
+  State<SignUpForm> createState() => _SignUpFormState();
 }
 
-class _SignInFormState extends State<SignInForm> {
+class _SignUpFormState extends State<SignUpForm> {
   bool obscurePassword = true;
+  bool obscureConfiermassword = true;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AuthBloc, AuthState>(
@@ -34,6 +39,27 @@ class _SignInFormState extends State<SignInForm> {
           key: widget.formKey,
           child: Column(
             children: [
+              CustomTextField1(
+                controller: widget.fullNameController,
+                hintText: 'Full name ',
+                overriderValidator: true,
+                validator: (value) {
+                  final nameRegex = RegExp(
+                    r'^[a-zA-Z]+(?: [a-zA-Z]+)*$',
+                  );
+
+                  if (value == null) {
+                    return 'please enter your email';
+                  } else {
+                    if (!nameRegex.hasMatch(value)) {
+                      return 'please enter valied email';
+                    }
+                  }
+
+                  return null;
+                },
+              ),
+              const SizedBox(height: 10),
               CustomTextField1(
                 controller: widget.emailController,
                 hintText: 'Email address',
@@ -54,7 +80,7 @@ class _SignInFormState extends State<SignInForm> {
                   return null;
                 },
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 10),
               CustomTextField1(
                 controller: widget.passwordController,
                 hintText: 'password',
@@ -68,7 +94,8 @@ class _SignInFormState extends State<SignInForm> {
                 obscureText: obscurePassword,
                 suffixIcon: IconButton(
                   icon: Icon(
-                      obscurePassword ? IconlyLight.show : IconlyLight.hide,),
+                    obscurePassword ? IconlyLight.show : IconlyLight.hide,
+                  ),
                   onPressed: () {
                     setState(
                       () {
@@ -78,7 +105,32 @@ class _SignInFormState extends State<SignInForm> {
                   },
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 10),
+              CustomTextField1(
+                controller: widget.confermPasswordController,
+                hintText: 'conferm password',
+                obscureText: obscureConfiermassword,
+                overriderValidator: true,
+                validator: (p0) {
+                  if (p0 != widget.passwordController.text) {
+                    return "password did't match ";
+                  }
+                  return null;
+                },
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    obscurePassword ? IconlyLight.show : IconlyLight.hide,
+                  ),
+                  onPressed: () {
+                    setState(
+                      () {
+                        obscureConfiermassword = !obscureConfiermassword;
+                      },
+                    );
+                  },
+                ),
+              ),
+              const SizedBox(height: 20),
               Align(
                 alignment: Alignment.centerRight,
                 child: TextButton(
@@ -88,7 +140,7 @@ class _SignInFormState extends State<SignInForm> {
                   child: const Text('forget Password'),
                 ),
               ),
-              const SizedBox(height: 30),
+              const SizedBox(height: 40),
               if (state is AuthLoading)
                 const Center(
                   child: CircularProgressIndicator(),
@@ -100,12 +152,14 @@ class _SignInFormState extends State<SignInForm> {
 
                     if (widget.formKey.currentState == null) {
                       AppUtils.showSnackBar(
-                          context: context,
-                          message: 'please compleate the form',);
+                        context: context,
+                        message: 'please compleate the form',
+                      );
                     } else if (widget.formKey.currentState != null) {
                       if (widget.formKey.currentState!.validate()) {
                         context.read<AuthBloc>().add(
-                              AuthSignInEvent(
+                              AuthSignUpEvent(
+                                fullName: widget.fullNameController.text,
                                 email: widget.emailController.text,
                                 password: widget.passwordController.text,
                               ),

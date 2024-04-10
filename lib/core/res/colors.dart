@@ -17,7 +17,7 @@ class Colours {
   static const biologyTitleColor = Color(0xffcfe5fc);
   static const mathTitleColor = Color(0xffffceca);
   static const literatureTitleColor = Color(0xffd5befb);
-  static const redColor = Color(0xfff5fc5c);
+  static const redColor = Color.fromARGB(255, 252, 92, 92);
   static const greencolor = Color(0xff28ca6c);
   static const chatFieldColor = Color(0xfff5f5f6);
   static const chatFieldColorDarker = Color(0xffe8e9ea);

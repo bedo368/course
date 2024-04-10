@@ -1,0 +1,20 @@
+import 'package:course_app/core/common/views/page_under_construction.dart';
+import 'package:course_app/core/common/widgets/gradient_background.dart';
+import 'package:course_app/core/extinsions/context_extintion.dart';
+import 'package:course_app/core/res/media_res.dart';
+import 'package:course_app/core/services/injection_container_imports.dart';
+import 'package:course_app/src/auth/data/modules/user_model.dart';
+import 'package:course_app/src/auth/presentition/bloc/auth_bloc.dart';
+import 'package:course_app/src/auth/presentition/views/screens/sign_in_screen.dart';
+import 'package:course_app/src/auth/presentition/views/screens/sign_up_screen.dart';
+import 'package:course_app/src/dashboard/views/screen/dashboard.dart';
+import 'package:course_app/src/on_boarding/datasources/on_boarding_local_data_source.dart';
+import 'package:course_app/src/on_boarding/presentation/cubit/onboarding_cubit.dart';
+import 'package:course_app/src/on_boarding/presentation/views/on_boarding_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart' as firebaseui;
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
+part 'router.dart';

@@ -2,7 +2,7 @@ import 'package:course_app/core/common/app/providers/user_provider.dart';
 import 'package:course_app/core/res/colors.dart';
 import 'package:course_app/core/res/fonts.dart';
 import 'package:course_app/core/services/injection_container_imports.dart';
-import 'package:course_app/core/services/router.dart';
+import 'package:course_app/core/services/router_import.dart';
 import 'package:course_app/firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';

@@ -4,7 +4,10 @@ import 'package:flutter/material.dart';
 class AppUtils {
   const AppUtils._();
 
-  static void showSnackBar(BuildContext context, String message) {
+  static void showSnackBar(
+      {required BuildContext context,
+      required String message,
+      bool error = false,}) {
     ScaffoldMessenger.of(context)
       ..clearSnackBars()
       ..showSnackBar(
@@ -17,7 +20,7 @@ class AppUtils {
             ),
           ),
           behavior: SnackBarBehavior.floating,
-          backgroundColor: Colours.primaryColor,
+          backgroundColor: error ? Colours.redColor : Colours.primaryColor,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           margin: const EdgeInsets.all(10),

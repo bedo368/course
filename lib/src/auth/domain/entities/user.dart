@@ -8,7 +8,7 @@ class LocalUser extends Equatable {
     required this.uid,
     required this.point,
     this.groups = const [],
-    this.enrolledCourses,
+    this.enrolledCourses = const [],
     this.following = const [],
     this.followers = const [],
     this.profilePic = '',
