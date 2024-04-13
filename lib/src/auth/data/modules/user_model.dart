@@ -8,15 +8,28 @@ class UserModel extends LocalUser {
     required super.fullName,
     required super.email,
     required super.uid,
-    required super.point,
-    super.groups,
-    super.enrolledCourses,
-    super.following,
-    super.followers,
-    super.bio,
+    required this.point,
     super.profilePic,
+    super.bio,
+    this.groups,
+    this.enrolledCourses,
+    this.following,
+    this.followers,
   });
 
+  UserModel.empty()
+      : this(
+          email: '',
+          uid: '',
+          followers: [],
+          following: [],
+          fullName: '',
+          enrolledCourses: [],
+          point: 0,
+          profilePic: '',
+          bio: '',
+          groups: [],
+        );
   factory UserModel.fromMap(DataMap data) {
     return UserModel(
       email: data['email'] as String,
@@ -39,20 +52,11 @@ class UserModel extends LocalUser {
           : [],
     );
   }
-
-  UserModel.empty()
-      : this(
-          email: '',
-          uid: '',
-          followers: [],
-          following: [],
-          fullName: '',
-          enrolledCourses: [],
-          point: 0,
-          profilePic: '',
-          bio: '',
-          groups: [],
-        );
+  final int? point;
+  final List<String>? groups;
+  final List<String>? enrolledCourses;
+  final List<String>? following;
+  final List<String>? followers;
 
   DataMap toMap({bool forJson = false}) {
     return {
@@ -87,11 +91,11 @@ class UserModel extends LocalUser {
       uid: uid ?? this.uid,
       profilePic: profilePic ?? this.profilePic,
       bio: bio ?? this.bio,
-      point: point ?? this.point,
-      groups: groups ?? this.groups,
-      enrolledCourses: enrolledCourses ?? this.enrolledCourses,
-      following: following ?? this.following,
-      followers: followers ?? this.followers,
+      // point: point ?? this.point,
+      // groups: groups ?? this.groups,
+      // enrolledCourses: enrolledCourses ?? this.enrolledCourses,
+      // following: following ?? this.following,
+      // followers: followers ?? this.followers,
     );
   }
 

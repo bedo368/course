@@ -6,39 +6,39 @@ class LocalUser extends Equatable {
     required this.fullName,
     required this.email,
     required this.uid,
-    required this.point,
-    this.groups = const [],
-    this.enrolledCourses = const [],
-    this.following = const [],
-    this.followers = const [],
-    this.profilePic = '',
     this.bio = '',
+    this.profilePic = '',
+    // this.point,
+    // this.groups = const [],
+    // this.enrolledCourses = const [],
+    // this.following = const [],
+    // this.followers = const [],
   });
 
-  LocalUser.empty()
+  const LocalUser.empty()
       : this(
           email: '',
           uid: '',
-          followers: [],
-          following: [],
           fullName: '',
-          enrolledCourses: [],
-          point: 0,
-          profilePic: '',
           bio: '',
-          groups: [],
+          profilePic: '',
+          // followers: [],
+          // following: [],
+          // enrolledCourses: [],
+          // point: 0,
+          // groups: [],
         );
 
   final String fullName;
   final String email;
   final String uid;
   final String? profilePic;
-  final String? bio;
-  final int point;
-  final List<String>? groups;
-  final List<String>? enrolledCourses;
-  final List<String>? following;
-  final List<String>? followers;
+  final String bio;
+  // final int? point;
+  // final List<String>? groups;
+  // final List<String>? enrolledCourses;
+  // final List<String>? following;
+  // final List<String>? followers;
 
   @override
   List<Object?> get props => [
@@ -47,11 +47,10 @@ class LocalUser extends Equatable {
         fullName,
         profilePic,
         bio,
-        groups,
-        enrolledCourses,
-        followers,
-        following,
-        profilePic,
+        // groups,
+        // enrolledCourses,
+        // followers,
+        // following,
       ];
 
   @override
